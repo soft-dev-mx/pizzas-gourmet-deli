@@ -54,14 +54,28 @@ public class ServiceProductosImplements implements IServiceProductos {
         EntidadProductos entidadProducto = new EntidadProductos();
         entidadProducto.setNombreProducto(dtoProductos.getNombreProducto());
         entidadProducto.setCategoriaProducto(dtoProductos.getCategoriaProducto());
-        entidadProducto.setClaveProducto(dtoProductos.getClaveProducto());
+
+        int largoBaseDatos = (int) daoProductos.count();
+        String categoriaProducto = entidadProducto.getCategoriaProducto();
+        int claveProducto = 0;
+        if(categoriaProducto.equals("tradicionales-clasicas")){
+            claveProducto = 1001 + largoBaseDatos;
+        } else if(categoriaProducto.equals("tradicionales-especiales")){
+            claveProducto = 2001 + largoBaseDatos;
+        } else if(categoriaProducto.equals("gourmet-clasicas")){
+            claveProducto = 3001 + largoBaseDatos;
+        } else if(categoriaProducto.equals("gourmet-especiales")){
+            claveProducto = 4001 + largoBaseDatos;
+        }
+        entidadProducto.setClaveProducto(claveProducto);
         entidadProducto.setPrecioProductoMini(dtoProductos.getPrecioProductoMini());
         entidadProducto.setPrecioProductoIndividual(dtoProductos.getPrecioProductoIndividual());
         entidadProducto.setPrecioProductoChica(dtoProductos.getPrecioProductoChica());
         entidadProducto.setPrecioProductoMediana(dtoProductos.getPrecioProductoMediana());
         entidadProducto.setPrecioProductoGrande(dtoProductos.getPrecioProductoGrande());
         entidadProducto.setPrecioProductoFamiliar(dtoProductos.getPrecioProductoFamiliar());
-        entidadProducto.setPrecioProductoOtros(dtoProductos.getPrecioProductoOtros());
+        double precioProductoOtros = 0;
+        entidadProducto.setPrecioProductoOtros(precioProductoOtros);
         entidadProducto.setDescripcionProducto(dtoProductos.getDescripcionProducto());
 
         String imagenProductoService = serviceProductosImg.guardarImagen(imagenProducto);

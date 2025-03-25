@@ -4,4 +4,5 @@ import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainproductos.EntidadPro
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IDaoProductos extends JpaRepository <EntidadProductos, Integer> {
+    long count();
 }
