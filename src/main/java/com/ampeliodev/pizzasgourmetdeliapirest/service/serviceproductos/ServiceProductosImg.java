@@ -15,8 +15,8 @@ public class ServiceProductosImg {
     @Autowired
     private Cloudinary cloudinary;
 
-    public String guardarImagen(MultipartFile file) throws IOException {
-        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+    public String guardarImagen(MultipartFile imagenProducto) throws IOException {
+        Map uploadResult = cloudinary.uploader().upload(imagenProducto.getBytes(), ObjectUtils.emptyMap());
 
 
         return uploadResult.get("secure_url").toString();
