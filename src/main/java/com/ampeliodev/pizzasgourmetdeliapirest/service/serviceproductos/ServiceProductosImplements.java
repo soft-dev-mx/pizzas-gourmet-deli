@@ -79,6 +79,7 @@ public class ServiceProductosImplements implements IServiceProductos {
         entidadProducto.setDescripcionProducto(dtoProductos.getDescripcionProducto());
 
         String imagenProductoService = serviceProductosImg.guardarImagen(imagenProducto);
+        dtoProductos.setImagenProducto(imagenProductoService);
         entidadProducto.setImagenProducto(imagenProductoService);
 
 

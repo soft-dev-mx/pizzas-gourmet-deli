@@ -21,6 +21,7 @@ public class DtoEntidadProductos {
     public DtoEntidadProductos() {
     }
 
+
     public DtoEntidadProductos(int idProducto, String nombreProducto, String categoriaProducto, int claveProducto, double precioProductoMini, double precioProductoIndividual, double precioProductoChica, double precioProductoMediana, double precioProductoGrande, double precioProductoFamiliar, double precioProductoOtros, String descripcionProducto, String imagenProducto) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
