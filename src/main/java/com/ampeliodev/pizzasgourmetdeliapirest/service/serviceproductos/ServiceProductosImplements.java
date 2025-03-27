@@ -42,8 +42,7 @@ public class ServiceProductosImplements implements IServiceProductos {
                         producto.getPrecioProductoGrande(),
                         producto.getPrecioProductoFamiliar(),
                         producto.getPrecioProductoOtros(),
-                        producto.getDescripcionProducto(),
-                        producto.getImagenProducto()
+                        producto.getDescripcionProducto()
                 )).collect(Collectors.toList());
     }
 

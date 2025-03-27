@@ -16,13 +16,11 @@ public class DtoEntidadProductos {
     private double precioProductoFamiliar;
     private double precioProductoOtros;
     private String descripcionProducto;
-    private String imagenProducto;
 
     public DtoEntidadProductos() {
     }
 
-
-    public DtoEntidadProductos(int idProducto, String nombreProducto, String categoriaProducto, int claveProducto, double precioProductoMini, double precioProductoIndividual, double precioProductoChica, double precioProductoMediana, double precioProductoGrande, double precioProductoFamiliar, double precioProductoOtros, String descripcionProducto, String imagenProducto) {
+    public DtoEntidadProductos(int idProducto, String nombreProducto, String categoriaProducto, int claveProducto, double precioProductoMini, double precioProductoIndividual, double precioProductoChica, double precioProductoMediana, double precioProductoGrande, double precioProductoFamiliar, double precioProductoOtros, String descripcionProducto) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.categoriaProducto = categoriaProducto;
@@ -35,7 +33,6 @@ public class DtoEntidadProductos {
         this.precioProductoFamiliar = precioProductoFamiliar;
         this.precioProductoOtros = precioProductoOtros;
         this.descripcionProducto = descripcionProducto;
-        this.imagenProducto = imagenProducto;
     }
 
     public int getIdProducto() {
@@ -134,11 +131,4 @@ public class DtoEntidadProductos {
         this.descripcionProducto = descripcionProducto;
     }
 
-    public String getImagenProducto() {
-        return imagenProducto;
-    }
-
-    public void setImagenProducto(String imagenProducto) {
-        this.imagenProducto = imagenProducto;
-    }
 }
