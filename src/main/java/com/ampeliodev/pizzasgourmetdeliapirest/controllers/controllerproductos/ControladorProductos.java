@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api")
 @Slf4j
 @CrossOrigin(origins = "https://www.soft-dev-mx.com")
 
@@ -22,7 +22,7 @@ public class ControladorProductos {
     @Autowired
     private IServiceProductos interfazServicioProductos;
 
-    @PostMapping("/guardarproductos")
+    @PostMapping("/products/guardarproductos")
     public ResponseEntity<?> guardarProducto(@ModelAttribute DtoEntidadProductos dtoProductos,
                                              @RequestPart("imagenProducto") MultipartFile imagenProducto) {
         try{
@@ -37,7 +37,7 @@ public class ControladorProductos {
         }
     }
 
-    @GetMapping("/listarProductos")
+    @GetMapping("/auth/listarProductos")
     public ResponseEntity<?> listarProductos() {
         try {
 
