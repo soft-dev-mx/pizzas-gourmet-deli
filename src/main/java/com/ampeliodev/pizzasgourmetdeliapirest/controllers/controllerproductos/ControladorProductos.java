@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/products")
 @Slf4j
 @CrossOrigin(origins = "https://www.soft-dev-mx.com")
 
