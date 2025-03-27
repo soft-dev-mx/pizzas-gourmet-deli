@@ -6,6 +6,7 @@ import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.JwtResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.LoginRequest;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.RegisterRequest;
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainauth.EntidadUsuarioAuth;
+import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoserverresponse.DtoServerResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryauth.UsuarioRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class ControladorAuth {
         usuario.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
         usuarioRepo.save(usuario);
 
-        return ResponseEntity.ok("Usuario registrado correctamente");
+        return ResponseEntity.ok( new DtoServerResponse("Usuario registrado correctamente"));
     }
 
 }
