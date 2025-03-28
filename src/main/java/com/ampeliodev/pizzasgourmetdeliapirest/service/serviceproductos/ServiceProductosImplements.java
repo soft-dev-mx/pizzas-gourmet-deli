@@ -50,8 +50,8 @@ public class ServiceProductosImplements implements IServiceProductos {
 
     @Override
     @Transactional(readOnly = true)
-    public List<DtoEntidadProductosResponse> listarProductosCategoria(String categoriaProducto){
-        return daoProductos.listarPorCategoria(categoriaProducto)
+    public List<DtoEntidadProductosResponse> listarProductosCategoria(String categoriaProducto1, String categoriaProducto2){
+        return daoProductos.listarPorCategoria(categoriaProducto1, categoriaProducto2)
                 .stream()
                 .map(producto -> new DtoEntidadProductosResponse(
                         producto.getIdProducto(),

@@ -49,11 +49,11 @@ public class ControladorProductos {
         }
     }
 
-    @GetMapping("/auth/listarProductos/{categoriaProducto}")
-    public ResponseEntity<?> listarProductos(@PathVariable String categoriaProducto) {
+    @GetMapping("/auth/listarProductos/{categoriaProducto1}/{categoriaProducto2}")
+    public ResponseEntity<?> listarProductos(@PathVariable String categoriaProducto1, String categoriaProducto2) {
         try {
 
-            List<DtoEntidadProductosResponse> productoDto = interfazServicioProductos.listarProductosCategoria(categoriaProducto);
+            List<DtoEntidadProductosResponse> productoDto = interfazServicioProductos.listarProductosCategoria(categoriaProducto1, categoriaProducto2);
             return ResponseEntity.ok(productoDto);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al capturar los datos del producto" + e.getMessage());

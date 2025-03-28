@@ -12,7 +12,7 @@ public interface IServiceProductos {
 
     public List<DtoEntidadProductosResponse> listarProductos();
 
-    public List<DtoEntidadProductosResponse> listarProductosCategoria(String categoriaProducto);
+    public List<DtoEntidadProductosResponse> listarProductosCategoria(String categoriaProducto1, String categoriaProducto2);
 
     public DtoEntidadProductos guardarProductos(DtoEntidadProductos dtoProducto, MultipartFile archivoImagen) throws IOException;
 
