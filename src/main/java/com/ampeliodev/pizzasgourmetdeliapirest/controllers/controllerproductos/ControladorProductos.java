@@ -48,4 +48,15 @@ public class ControladorProductos {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al capturar los datos del producto" + e.getMessage());
         }
     }
+
+    @GetMapping("/auth/listarProductos/{categoriaProducto}")
+    public ResponseEntity<?> listarProductos(@PathVariable String categoriaProducto) {
+        try {
+
+            List<DtoEntidadProductosResponse> productoDto = interfazServicioProductos.listarProductosCategoria(categoriaProducto);
+            return ResponseEntity.ok(productoDto);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al capturar los datos del producto" + e.getMessage());
+        }
+    }
 }
