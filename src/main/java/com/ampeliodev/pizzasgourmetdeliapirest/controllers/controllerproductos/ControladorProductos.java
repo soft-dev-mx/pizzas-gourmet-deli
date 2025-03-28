@@ -50,7 +50,8 @@ public class ControladorProductos {
     }
 
     @GetMapping("/auth/listarProductos/{categoriaProducto1}/{categoriaProducto2}")
-    public ResponseEntity<?> listarProductos(@PathVariable String categoriaProducto1, String categoriaProducto2) {
+    public ResponseEntity<?> listarProductos(@PathVariable String categoriaProducto1,
+                                             @PathVariable String categoriaProducto2) {
         try {
 
             List<DtoEntidadProductosResponse> productoDto = interfazServicioProductos.listarProductosCategoria(categoriaProducto1, categoriaProducto2);
