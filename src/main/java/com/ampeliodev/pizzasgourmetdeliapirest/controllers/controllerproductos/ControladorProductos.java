@@ -1,6 +1,7 @@
 package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerproductos;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoproductos.DtoEntidadProductos;
+import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoproductos.DtoEntidadProductosResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.service.serviceproductos.IServiceProductos;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class ControladorProductos {
     public ResponseEntity<?> listarProductos() {
         try {
 
-            List<DtoEntidadProductos> productoDto = interfazServicioProductos.listarProductos();
+            List<DtoEntidadProductosResponse> productoDto = interfazServicioProductos.listarProductos();
             return ResponseEntity.ok(productoDto);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al capturar los datos del producto" + e.getMessage());

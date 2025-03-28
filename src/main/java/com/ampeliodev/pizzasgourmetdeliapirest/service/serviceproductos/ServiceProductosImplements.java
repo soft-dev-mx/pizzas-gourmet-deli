@@ -2,6 +2,7 @@ package com.ampeliodev.pizzasgourmetdeliapirest.service.serviceproductos;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainproductos.EntidadProductos;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoproductos.DtoEntidadProductos;
+import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoproductos.DtoEntidadProductosResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryproductos.IDaoProductos;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,11 @@ public class ServiceProductosImplements implements IServiceProductos {
 
     @Override
     @Transactional(readOnly = true)
-    public List<DtoEntidadProductos> listarProductos(){
+    public List<DtoEntidadProductosResponse> listarProductos(){
 
         return daoProductos.findAll()
                 .stream()
-                .map(producto -> new DtoEntidadProductos(
+                .map(producto -> new DtoEntidadProductosResponse(
                         producto.getIdProducto(),
                         producto.getNombreProducto(),
                         producto.getCategoriaProducto(),
@@ -42,7 +43,8 @@ public class ServiceProductosImplements implements IServiceProductos {
                         producto.getPrecioProductoGrande(),
                         producto.getPrecioProductoFamiliar(),
                         producto.getPrecioProductoOtros(),
-                        producto.getDescripcionProducto()
+                        producto.getDescripcionProducto(),
+                        producto.getImagenProducto()
                 )).collect(Collectors.toList());
     }
 

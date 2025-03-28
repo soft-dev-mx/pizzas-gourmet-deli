@@ -2,6 +2,7 @@ package com.ampeliodev.pizzasgourmetdeliapirest.service.serviceproductos;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainproductos.EntidadProductos;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoproductos.DtoEntidadProductos;
+import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoproductos.DtoEntidadProductosResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface IServiceProductos {
 
-    public List<DtoEntidadProductos> listarProductos();
+    public List<DtoEntidadProductosResponse> listarProductos();
 
     public DtoEntidadProductos guardarProductos(DtoEntidadProductos dtoProducto, MultipartFile archivoImagen) throws IOException;
 
