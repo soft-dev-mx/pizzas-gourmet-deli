@@ -58,7 +58,7 @@ public class ControladorAuthClientes {
         usuario.setNombreCliente(signUpRequest.getNombreCliente());
         usuario.setApellidoCliente(signUpRequest.getApellidoCliente());
         usuario.setEmailCliente(signUpRequest.getEmailCliente());
-        usuario.setPasswordCliente(signUpRequest.getPasswordCliente());
+        usuario.setPasswordCliente(passwordEncoder.encode(signUpRequest.getPasswordCliente()));
         usuario.setTelefonoCliente(signUpRequest.getTelefonoCliente());
         clientesRepository.save(usuario);
 
