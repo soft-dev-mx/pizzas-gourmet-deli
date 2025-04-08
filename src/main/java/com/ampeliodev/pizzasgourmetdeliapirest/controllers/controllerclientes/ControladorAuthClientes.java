@@ -1,11 +1,11 @@
-package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerauth;
+package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerclientes;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.JwtProvider;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.JwtResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.LoginRequest;
-import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainclientes.EntidadClientes;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoclientes.ClientesRegisterRequest;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoserverresponse.DtoServerResponse;
+import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainclientes.EntidadClientes;
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryclientes.ClientesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth;
 
-import com.ampeliodev.pizzasgourmetdeliapirest.security.UserDetailsServiceImpl;
+import com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

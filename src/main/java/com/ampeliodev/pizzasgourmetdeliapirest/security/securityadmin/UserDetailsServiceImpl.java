@@ -1,4 +1,4 @@
-package com.ampeliodev.pizzasgourmetdeliapirest.security;
+package com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainauth.EntidadUsuarioAuth;
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryauth.UsuarioRepository;
