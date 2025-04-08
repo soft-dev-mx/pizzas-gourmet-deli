@@ -17,7 +17,7 @@ public class ClientDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String nombreCliente) throws UsernameNotFoundException {
 
-        EntidadClientes entidadCliente = clientesRepository.findByClientname(nombreCliente)
+        EntidadClientes entidadCliente = clientesRepository.findBynombreCliente(nombreCliente)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
         return new ClientDetailsImpl(entidadCliente);
     }
