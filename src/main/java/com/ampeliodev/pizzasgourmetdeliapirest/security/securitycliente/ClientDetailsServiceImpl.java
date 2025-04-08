@@ -2,7 +2,6 @@ package com.ampeliodev.pizzasgourmetdeliapirest.security.securitycliente;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainclientes.EntidadClientes;
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryclientes.ClientesRepository;
-import com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
