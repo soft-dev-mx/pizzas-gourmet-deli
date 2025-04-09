@@ -2,7 +2,7 @@ package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerclientes;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.JwtProvider;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.JwtResponse;
-import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.LoginRequest;
+import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoclientes.LoginRequestCliente;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoclientes.ClientesRegisterRequest;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoserverresponse.DtoServerResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainclientes.EntidadClientes;
@@ -36,10 +36,10 @@ public class ControladorAuthClientes {
     private JwtProvider jwtProvider;
 
     @PostMapping("/cliente-login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestCliente loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(), loginRequest.getPassword()));
+                        loginRequest.getEmailCliente(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtResponse(token));
