@@ -14,6 +14,8 @@ public interface IServiceProductos {
 
     public List<DtoEntidadProductosResponse> listarProductosCategoria(String categoriaProducto1, String categoriaProducto2);
 
+    public List<DtoEntidadProductosResponse> listarProductosPorUnaCategoria(String categoriaProducto1);
+
     public DtoEntidadProductos guardarProductos(DtoEntidadProductos dtoProducto, MultipartFile archivoImagen) throws IOException;
 
     public void eliminarProducto(EntidadProductos producto);

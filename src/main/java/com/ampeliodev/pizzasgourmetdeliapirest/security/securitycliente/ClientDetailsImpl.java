@@ -11,11 +11,11 @@ import java.util.List;
 
 public class ClientDetailsImpl implements UserDetails {
 
-    private String nombreCliente;
+    private String emailCliente;
     private String passwordCliente;
 
     public ClientDetailsImpl(EntidadClientes entidadClientes) {
-        this.nombreCliente = entidadClientes.getNombreCliente();
+        this.emailCliente = entidadClientes.getEmailCliente();
         this.passwordCliente = entidadClientes.getPasswordCliente();
     }
 
@@ -31,7 +31,7 @@ public class ClientDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return nombreCliente;
+        return emailCliente;
     }
 
     @Override

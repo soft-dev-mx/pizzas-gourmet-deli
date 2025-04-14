@@ -71,6 +71,28 @@ public class ServiceProductosImplements implements IServiceProductos {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<DtoEntidadProductosResponse> listarProductosPorUnaCategoria(String categoriaProducto1){
+        return daoProductos.listarPorUnaCategoria(categoriaProducto1)
+                .stream()
+                .map(producto -> new DtoEntidadProductosResponse(
+                        producto.getIdProducto(),
+                        producto.getNombreProducto(),
+                        producto.getCategoriaProducto(),
+                        producto.getClaveProducto(),
+                        producto.getPrecioProductoMini(),
+                        producto.getPrecioProductoIndividual(),
+                        producto.getPrecioProductoChica(),
+                        producto.getPrecioProductoMediana(),
+                        producto.getPrecioProductoGrande(),
+                        producto.getPrecioProductoFamiliar(),
+                        producto.getPrecioProductoOtros(),
+                        producto.getDescripcionProducto(),
+                        producto.getImagenProducto()
+                )).collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public DtoEntidadProductos guardarProductos(DtoEntidadProductos dtoProductos, MultipartFile imagenProducto) throws IOException {
 
