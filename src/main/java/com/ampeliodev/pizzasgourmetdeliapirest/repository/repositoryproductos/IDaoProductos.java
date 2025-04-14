@@ -11,7 +11,7 @@ public interface IDaoProductos extends JpaRepository <EntidadProductos, Integer>
 
     long count();
 
-    @Query(value = "SELECT * FROM productos_gourmet_deli WHERE categoria_producto = :categoria1, nativeQuery = true)
+    @Query(value = "SELECT * FROM productos_gourmet_deli WHERE categoria_producto = :categoria1", nativeQuery = true)
     List<EntidadProductos> listarPorUnaCategoria(@Param("categoria1") String categoria1);
 
     @Query(value = "SELECT * FROM productos_gourmet_deli WHERE categoria_producto = :categoria1 OR categoria_producto = :categoria2", nativeQuery = true)
