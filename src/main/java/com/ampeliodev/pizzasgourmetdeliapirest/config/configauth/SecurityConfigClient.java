@@ -1,6 +1,5 @@
 package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth;
 
-import com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin.UserDetailsServiceImpl;
 import com.ampeliodev.pizzasgourmetdeliapirest.security.securitycliente.ClientDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,13 +23,13 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfigClient {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private ClientDetailsServiceImpl clientDetailsService;
 
     @Autowired
-    private JwtAuthenticationFilter jwtFilter;
+    private JwtAthenticationFilterClient jwtFilterClient;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -54,7 +53,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilterClient, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -78,11 +77,9 @@ public class SecurityConfig {
     @Bean
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
+        provider.setUserDetailsService(clientDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
-
-
 
 }
