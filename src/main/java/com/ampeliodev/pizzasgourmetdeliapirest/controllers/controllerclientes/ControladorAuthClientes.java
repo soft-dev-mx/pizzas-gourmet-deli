@@ -24,24 +24,24 @@ import org.springframework.web.bind.annotation.*;
 public class ControladorAuthClientes {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationClientManager;
 
     @Autowired
     private ClientesRepository clientesRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder clientPasswordEncoder;
 
     @Autowired
-    private JwtClientProvider jwtProvider;
+    private JwtClientProvider jwtClientProvider;
 
     @PostMapping("/cliente-login")
     public ResponseEntity<?> login(@RequestBody LoginRequestCliente loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
+        Authentication authentication = authenticationClientManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmailCliente(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtProvider.generateToken(authentication);
+        String token = jwtClientProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
@@ -58,7 +58,7 @@ public class ControladorAuthClientes {
         usuario.setNombreCliente(signUpRequest.getNombreCliente());
         usuario.setApellidoCliente(signUpRequest.getApellidoCliente());
         usuario.setEmailCliente(signUpRequest.getEmailCliente());
-        usuario.setPasswordCliente(passwordEncoder.encode(signUpRequest.getPasswordCliente()));
+        usuario.setPasswordCliente(clientPasswordEncoder.encode(signUpRequest.getPasswordCliente()));
         usuario.setTelefonoCliente(signUpRequest.getTelefonoCliente());
         clientesRepository.save(usuario);
 

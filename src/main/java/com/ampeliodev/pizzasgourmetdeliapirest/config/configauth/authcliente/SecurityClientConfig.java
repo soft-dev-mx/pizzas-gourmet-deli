@@ -33,7 +33,7 @@ public class SecurityClientConfig {
     private JwtAuthenticationClientFilter jwtAuthenticationClientFilterFilter;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordClientEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -79,7 +79,7 @@ public class SecurityClientConfig {
     public DaoAuthenticationProvider authClientProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(clientDetailsService);
-        provider.setPasswordEncoder(passwordEncoder());
+        provider.setPasswordEncoder(passwordClientEncoder());
         return provider;
     }
 }
