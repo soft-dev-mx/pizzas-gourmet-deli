@@ -50,7 +50,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain clientFilterChain(HttpSecurity http) throws Exception {// para filtrar las peticiones http
         http
-                .cors(cors -> cors.configurationSource(clientCorsConfigurationSource()))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
@@ -63,7 +63,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CorsConfigurationSource clientCorsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "https://soft-dev-mx.com",
