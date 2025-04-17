@@ -52,7 +52,7 @@ public class SecurityClientConfig {
                 .csrf(csrf -> csrf.disable())
                 .securityMatcher("/api/client/**")
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/client/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

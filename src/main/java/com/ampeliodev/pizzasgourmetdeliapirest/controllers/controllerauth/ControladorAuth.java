@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/admin")
 @CrossOrigin(origins = "https://soft-dev-mx.com")
 @Slf4j
 public class ControladorAuth {
