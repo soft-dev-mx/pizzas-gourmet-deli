@@ -53,6 +53,7 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
+                .securityMatcher("/api/admin/**")
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/authi/**").permitAll()
                         .anyRequest().authenticated()
