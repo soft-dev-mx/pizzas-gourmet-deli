@@ -39,7 +39,10 @@ public class ControladorAuth {
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(), loginRequest.getPassword()));
+                        loginRequest.getUsername(),
+                        loginRequest.getPassword()
+                )
+        );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtResponse(token));

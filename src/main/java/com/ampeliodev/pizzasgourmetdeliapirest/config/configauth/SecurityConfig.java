@@ -1,7 +1,6 @@
 package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin.UserDetailsServiceImpl;
-import com.ampeliodev.pizzasgourmetdeliapirest.security.securitycliente.ClientDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
