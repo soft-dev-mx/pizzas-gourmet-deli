@@ -1,4 +1,4 @@
-package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth;
+package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authcliente;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class JwtProvider {
+public class JwtClientProvider {
 
     @Value("${jwt.secret}")
     private String jwtSecret;
@@ -41,5 +41,6 @@ public class JwtProvider {
             return false;
         }
     }
+
 
 }

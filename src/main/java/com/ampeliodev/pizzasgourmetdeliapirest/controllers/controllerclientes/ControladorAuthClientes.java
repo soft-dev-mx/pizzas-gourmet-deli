@@ -1,6 +1,6 @@
 package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerclientes;
 
-import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.JwtProvider;
+import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authcliente.JwtClientProvider;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.JwtResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoclientes.LoginRequestCliente;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoclientes.ClientesRegisterRequest;
@@ -33,7 +33,7 @@ public class ControladorAuthClientes {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private JwtProvider jwtProvider;
+    private JwtClientProvider jwtProvider;
 
     @PostMapping("/cliente-login")
     public ResponseEntity<?> login(@RequestBody LoginRequestCliente loginRequest) {

@@ -1,6 +1,6 @@
 package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerauth;
 
-import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.JwtProvider;
+import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authusuario.JwtProvider;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.JwtResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.LoginRequest;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.RegisterRequest;

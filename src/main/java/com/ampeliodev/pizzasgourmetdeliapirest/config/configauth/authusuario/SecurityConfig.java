@@ -1,4 +1,4 @@
-package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth;
+package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authusuario;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +81,5 @@ public class SecurityConfig {
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
-
-
 
 }

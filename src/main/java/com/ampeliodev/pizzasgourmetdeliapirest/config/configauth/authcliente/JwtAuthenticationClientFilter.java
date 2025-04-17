@@ -1,6 +1,7 @@
-package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth;
+package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authcliente;
 
-import com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin.UserDetailsServiceImpl;
+import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authcliente.JwtClientProvider;
+import com.ampeliodev.pizzasgourmetdeliapirest.security.securitycliente.ClientDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,13 +18,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationClientFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JwtProvider jwtProvider;
+    private JwtClientProvider jwtProvider;
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private ClientDetailsServiceImpl clientDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -36,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (token != null && jwtProvider.validateToken(token)) {
             String username = jwtProvider.getUsernameFromToken(token);
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = clientDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());
