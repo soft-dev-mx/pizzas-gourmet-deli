@@ -47,7 +47,7 @@ public class SecurityConfig {
     }
 
 
-    @Bean
+    @Bean (name = "filterChain")
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {// para filtrar las peticiones http
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
