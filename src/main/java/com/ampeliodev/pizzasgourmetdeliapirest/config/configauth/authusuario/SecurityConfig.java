@@ -38,8 +38,8 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public AuthenticationManager authenticationClientManager(AuthenticationConfiguration authConfig)
+    @Bean (name = "authenticationManager")
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig)
             throws Exception {
         return authConfig.getAuthenticationManager();
     }

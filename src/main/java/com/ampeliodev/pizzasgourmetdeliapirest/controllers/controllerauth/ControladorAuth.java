@@ -9,6 +9,7 @@ import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainauth.EntidadUsuarioA
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryauth.UsuarioRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class ControladorAuth {
 
     @Autowired
+    @Qualifier("authenticationManager")
     private AuthenticationManager authenticationManager;
 
     @Autowired

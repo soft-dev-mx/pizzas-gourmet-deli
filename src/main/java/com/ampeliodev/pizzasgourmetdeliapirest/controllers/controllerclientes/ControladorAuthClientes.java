@@ -9,6 +9,7 @@ import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainclientes.EntidadClie
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryclientes.ClientesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,13 +25,14 @@ import org.springframework.web.bind.annotation.*;
 public class ControladorAuthClientes {
 
     @Autowired
+    @Qualifier("authenticationClientManager")
     private AuthenticationManager authenticationClientManager;
 
     @Autowired
     private ClientesRepository clientesRepository;
 
     @Autowired
-    private PasswordEncoder clientPasswordEncoder;
+    private PasswordEncoder passwordClientEncoder;
 
     @Autowired
     private JwtClientProvider jwtClientProvider;
@@ -58,7 +60,7 @@ public class ControladorAuthClientes {
         usuario.setNombreCliente(signUpRequest.getNombreCliente());
         usuario.setApellidoCliente(signUpRequest.getApellidoCliente());
         usuario.setEmailCliente(signUpRequest.getEmailCliente());
-        usuario.setPasswordCliente(clientPasswordEncoder.encode(signUpRequest.getPasswordCliente()));
+        usuario.setPasswordCliente(passwordClientEncoder.encode(signUpRequest.getPasswordCliente()));
         usuario.setTelefonoCliente(signUpRequest.getTelefonoCliente());
         clientesRepository.save(usuario);
 
