@@ -48,7 +48,7 @@ public class SecurityConfig {
 
 
     @Bean
-    public SecurityFilterChain clientFilterChain(HttpSecurity http) throws Exception {// para filtrar las peticiones http
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {// para filtrar las peticiones http
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
