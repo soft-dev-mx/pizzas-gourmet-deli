@@ -24,7 +24,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity
 @Order(2)
 public class SecurityClientConfig {
 
