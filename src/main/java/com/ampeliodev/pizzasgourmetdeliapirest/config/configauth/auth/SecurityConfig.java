@@ -1,14 +1,13 @@
-package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authcliente;
+package com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.auth;
 
-import com.ampeliodev.pizzasgourmetdeliapirest.security.securitycliente.ClientDetailsServiceImpl;
+import com.ampeliodev.pizzasgourmetdeliapirest.security.securityauth.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,45 +21,47 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@Order(2)
-public class SecurityClientConfig {
+@EnableWebSecurity
+public class SecurityConfig {
 
     @Autowired
-    private ClientDetailsServiceImpl clientDetailsService;
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Autowired
-    private JwtAuthenticationClientFilter jwtAuthenticationClientFilterFilter;
+    private JwtProvider jwtProvider;
 
     @Bean
-    public PasswordEncoder passwordClientEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean  (name = "authenticationClientManager")
-    public AuthenticationManager authenticationClientManager(AuthenticationConfiguration authConfig)
-            throws Exception {
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
-
-    @Bean (name = "clientFilterChain")
-    public SecurityFilterChain clientFilterChain(HttpSecurity http) throws Exception {// para filtrar las peticiones http
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.configurationSource(clientCorsConfigurationSource()))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
-                .securityMatcher("/api/client/**")
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/client/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/protected/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/protected/cliente/**").hasRole("CLIENTE")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthenticationClientFilterFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(
+                        new JwtAuthenticationFilter(),
+                        UsernamePasswordAuthenticationFilter.class
+                );
 
         return http.build();
     }
 
     @Bean
-    public CorsConfigurationSource clientCorsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "https://soft-dev-mx.com",
@@ -75,11 +76,5 @@ public class SecurityClientConfig {
         return source;
     }
 
-    @Bean
-    public DaoAuthenticationProvider authClientProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(clientDetailsService);
-        provider.setPasswordEncoder(passwordClientEncoder());
-        return provider;
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.ampeliodev.pizzasgourmetdeliapirest.security.securityadmin;
+package com.ampeliodev.pizzasgourmetdeliapirest.security.securityauth;
 
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainauth.EntidadUsuarioAuth;
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryauth.UsuarioRepository;
@@ -15,9 +15,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UsuarioRepository usuarioRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        EntidadUsuarioAuth usuario = usuarioRepository.findByUsername(username)
+    public UserDetails loadUserByUsername(String emailUsuario) throws UsernameNotFoundException {
+        EntidadUsuarioAuth usuario = usuarioRepository.findByEmailUsuario(emailUsuario)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-        return new UserDetailsImpl(usuario);
+        return UserDetailsImpl.build(usuario);
     }
 }

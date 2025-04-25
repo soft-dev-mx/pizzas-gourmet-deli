@@ -1,12 +1,13 @@
 package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerauth;
 
-import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.authusuario.JwtProvider;
+import com.ampeliodev.pizzasgourmetdeliapirest.config.configauth.auth.JwtProvider;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.JwtResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.LoginRequest;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.RegisterRequest;
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoserverresponse.DtoServerResponse;
 import com.ampeliodev.pizzasgourmetdeliapirest.domain.domainauth.EntidadUsuarioAuth;
 import com.ampeliodev.pizzasgourmetdeliapirest.repository.repositoryauth.UsuarioRepository;
+import com.ampeliodev.pizzasgourmetdeliapirest.service.serviceauth.ServiceSecurity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,47 +26,24 @@ import org.springframework.web.bind.annotation.*;
 public class ControladorAuth {
 
     @Autowired
-    @Qualifier("authenticationManager")
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UsuarioRepository usuarioRepo;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private ServiceSecurity serviceSecurity;
 
     @Autowired
     private JwtProvider jwtProvider;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(token));
+    @PostMapping("/adminsignin")
+    public ResponseEntity<?> registerAdmin(@RequestBody RegisterRequest registerRequest) {
+        return serviceSecurity.registraUsuario(registerRequest);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest signUpRequest) {
-        if (usuarioRepo.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity.badRequest().body("Error: ¡Usuario ya existe!");
-        }
-        if (usuarioRepo.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body("Error: ¡Email ya existe!");
-        }
+    @PostMapping("/clientesignin")
+    public ResponseEntity<?> registerCliente(@RequestBody RegisterRequest registerRequest) {
+        return serviceSecurity.registraUsuario(registerRequest);
+    }
 
-        EntidadUsuarioAuth usuario = new EntidadUsuarioAuth();
-        usuario.setUsername(signUpRequest.getUsername());
-        usuario.setEmail(signUpRequest.getEmail());
-        usuario.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
-        usuarioRepo.save(usuario);
-
-        return ResponseEntity.ok( new DtoServerResponse("Usuario registrado correctamente"));
+    @PostMapping("/login")
+    public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest loginRequest) {
+        return serviceSecurity.login(loginRequest);
     }
 
 }
