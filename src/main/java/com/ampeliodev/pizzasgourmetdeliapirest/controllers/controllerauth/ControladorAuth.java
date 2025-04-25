@@ -43,7 +43,8 @@ public class ControladorAuth {
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest loginRequest) {
-        return serviceSecurity.login(loginRequest);
+        return serviceSecurity.login(loginRequest
+        );
     }
 
 }
