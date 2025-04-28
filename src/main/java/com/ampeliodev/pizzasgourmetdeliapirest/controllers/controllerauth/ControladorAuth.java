@@ -2,22 +2,16 @@ package com.ampeliodev.pizzasgourmetdeliapirest.controllers.controllerauth;
 
 
 import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtoauth.*;
-import com.ampeliodev.pizzasgourmetdeliapirest.dto.dtopedidos.DtoPedidos;
 import com.ampeliodev.pizzasgourmetdeliapirest.service.serviceauth.ServiceSecurity;
-import com.ampeliodev.pizzasgourmetdeliapirest.service.serviceclip.ServicioPagoClip;
 import com.ampeliodev.pizzasgourmetdeliapirest.service.serviceproductos.IServiceProductos;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://www.soft-dev-mx.com")
 @Slf4j
 public class ControladorAuth {
 

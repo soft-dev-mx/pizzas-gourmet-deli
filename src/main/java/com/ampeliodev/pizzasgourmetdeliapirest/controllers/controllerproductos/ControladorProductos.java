@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/protected/admin")
 @Slf4j
 @CrossOrigin(origins = "https://www.soft-dev-mx.com")
 
