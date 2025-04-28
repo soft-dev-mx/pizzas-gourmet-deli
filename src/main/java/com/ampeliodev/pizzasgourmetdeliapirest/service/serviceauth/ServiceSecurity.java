@@ -17,6 +17,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class ServiceSecurity {
 
@@ -46,15 +49,18 @@ public class ServiceSecurity {
         usuario.setTelefonoUsuario(registerRequest.getTelefonoUsuario());
 
         try {
-            RolName rol = RolName.valueOf(registerRequest.getRolUsuario());
-            usuario.setRolUsuario(rol);
+            RolName rol = RolName.valueOf(registerRequest.getRolusuario());
+            usuario.setRolusuario(rol);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Error: Rol inválido");
         }
 
         userRepository.save(usuario);
 
-        return ResponseEntity.ok("Usuario registrado exitosamente");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Usuario registrado exitosamente");
+
+        return ResponseEntity.ok(response);
     }
 
     public ResponseEntity<JwtResponse> login(LoginRequest loginRequest) {
@@ -69,6 +75,7 @@ public class ServiceSecurity {
         String jwt = jwtProvider.generateToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
         String rol = userDetails.getAuthorities().iterator().next().getAuthority();
 
         return ResponseEntity.ok(new JwtResponse(

@@ -19,15 +19,15 @@ import java.util.List;
 public class ControladorPedidos {
 
     @Autowired
-    private IServicePedidos	servicePedido;
+    private IServicePedidos	iServicePedidos;
 
     @PostMapping("/guardarPedidos")
-    public ResponseEntity<?> guardarPedidos(@RequestBody List<DtoPedidos> pedidosSeleccionados) {
+    public ResponseEntity<?> guardarPedidos(@RequestBody DtoPedidos dtoPedidos) {
 
         try{
-            servicePedido.guardarPedidos(pedidosSeleccionados);
-            return ResponseEntity.ok(HttpStatus.OK);
+            DtoPedidos dtoPedidosGuardado = iServicePedidos.guardarPedidos(dtoPedidos);
 
+            return ResponseEntity.ok(HttpStatus.OK);
         }
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar los datos del pedido" + e.getMessage());

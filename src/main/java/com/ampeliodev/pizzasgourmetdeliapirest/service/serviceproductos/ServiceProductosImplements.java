@@ -94,7 +94,7 @@ public class ServiceProductosImplements implements IServiceProductos {
 
     @Override
     @Transactional
-    public DtoEntidadProductos guardarProductos(DtoEntidadProductos dtoProductos, MultipartFile imagenProducto) throws IOException {
+    public DtoEntidadProductos guardarProductosPizza(DtoEntidadProductos dtoProductos, MultipartFile imagenProducto) throws IOException {
 
         EntidadProductos entidadProducto = new EntidadProductos();
         entidadProducto.setNombreProducto(dtoProductos.getNombreProducto());
@@ -130,6 +130,51 @@ public class ServiceProductosImplements implements IServiceProductos {
         daoProductos.save(entidadProducto);
         return dtoProductos;
     }
+
+    @Override
+    @Transactional
+    public DtoEntidadProductos guardarProductosOtros(DtoEntidadProductos dtoProductos, MultipartFile imagenProducto) throws IOException {
+
+        EntidadProductos entidadProducto = new EntidadProductos();
+        entidadProducto.setNombreProducto(dtoProductos.getNombreProducto());
+        entidadProducto.setCategoriaProducto(dtoProductos.getCategoriaProducto());
+
+        int largoBaseDatos = (int) daoProductos.count();
+        String categoriaProducto = entidadProducto.getCategoriaProducto();
+        int claveProducto = 0;
+        if(categoriaProducto.equals("bebidas")){
+            claveProducto = 5001 + largoBaseDatos;
+        } else if(categoriaProducto.equals("complementos")){
+            claveProducto = 6001 + largoBaseDatos;
+        } else if(categoriaProducto.equals("postres")){
+            claveProducto = 7001 + largoBaseDatos;
+        }
+
+        entidadProducto.setClaveProducto(claveProducto);
+        double precioProductoMini = 0;
+        entidadProducto.setPrecioProductoMini(precioProductoMini);
+        double precioProductoIndividual = 0;
+        entidadProducto.setPrecioProductoIndividual(precioProductoIndividual);
+        double precioProductoChica = 0;
+        entidadProducto.setPrecioProductoChica(precioProductoChica);
+        double precioProductoMediana = 0;
+        entidadProducto.setPrecioProductoMediana(precioProductoMediana);
+        double precioProductoGrande = 0;
+        entidadProducto.setPrecioProductoGrande(precioProductoGrande);
+        double precioProductoFamiliar = 0;
+        entidadProducto.setPrecioProductoFamiliar(precioProductoFamiliar);
+        double precioProductoOtros = 0;
+        entidadProducto.setPrecioProductoOtros(precioProductoOtros);
+        entidadProducto.setDescripcionProducto(dtoProductos.getDescripcionProducto());
+
+        String imagenProductoService = serviceProductosImg.guardarImagen(imagenProducto);
+
+        entidadProducto.setImagenProducto(imagenProductoService);
+
+        daoProductos.save(entidadProducto);
+        return dtoProductos;
+    }
+
 
     @Override
     @Transactional

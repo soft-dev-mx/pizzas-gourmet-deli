@@ -23,14 +23,30 @@ public class ControladorProductos {
     @Autowired
     private IServiceProductos interfazServicioProductos;
 
-    @PostMapping("/products/guardarproductos")
-    public ResponseEntity<?> guardarProducto(@ModelAttribute DtoEntidadProductos dtoProductos,
+    @PostMapping("/products/guardarproductospizzas")
+    public ResponseEntity<?> guardarProductoPizza(@ModelAttribute DtoEntidadProductos dtoProductos,
                                              @RequestPart("imagenProducto") MultipartFile imagenProducto) {
         try{
 
             log.info("El nombre del archivo recibido es: " +imagenProducto.getOriginalFilename());
 
-            DtoEntidadProductos dtoProductoGuardado = interfazServicioProductos.guardarProductos(dtoProductos, imagenProducto);
+            DtoEntidadProductos dtoProductoGuardado = interfazServicioProductos.guardarProductosPizza(dtoProductos, imagenProducto);
+            return ResponseEntity.ok(dtoProductoGuardado);
+
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al capturar los datos del producto" + e.getMessage());
+        }
+    }
+
+    @PostMapping("/products/guardarproductosotros")
+    public ResponseEntity<?> guardarProductoOtros(@ModelAttribute DtoEntidadProductos dtoProductos,
+                                             @RequestPart("imagenProducto") MultipartFile imagenProducto) {
+        try{
+
+            log.info("El nombre del archivo recibido es: " +imagenProducto.getOriginalFilename());
+
+            DtoEntidadProductos dtoProductoGuardado = interfazServicioProductos.guardarProductosOtros(dtoProductos, imagenProducto);
+
             return ResponseEntity.ok(dtoProductoGuardado);
 
         }catch(Exception e){

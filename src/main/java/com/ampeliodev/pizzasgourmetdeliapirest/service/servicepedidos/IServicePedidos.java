@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface IServicePedidos {
 
-    public List<DtoPedidos> listarPedidos();
-
-    public void guardarPedidos(List<DtoPedidos> pedidos);
+    public DtoPedidos guardarPedidos(DtoPedidos dtoPedidos);
 
 }

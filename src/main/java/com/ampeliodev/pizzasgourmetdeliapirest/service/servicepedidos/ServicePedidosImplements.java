@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,26 +15,37 @@ import java.util.List;
 public class ServicePedidosImplements implements IServicePedidos{
 
     @Autowired
-    private IDaoPedidos daoPedido;
-
-    @Override
-    public List<DtoPedidos> listarPedidos() {
-        return List.of();
-    }
+    private IDaoPedidos iDaoPedidos;
 
     @Override
     @Transactional
-    public void guardarPedidos(List<DtoPedidos> pedidos) {
+    public DtoPedidos guardarPedidos(DtoPedidos pedidos) {
 
-        for(DtoPedidos pedido : pedidos){
-            EntidadPedidos entidadPedidos = new EntidadPedidos();
-            entidadPedidos.setFormaEntregaPedido(pedido.getFormaEntregaPedido());
-            entidadPedidos.setHrFechaProducto(pedido.getHrFechaProducto());
-            entidadPedidos.setIdProductoPedido(pedido.getIdProductoPedido());
-            entidadPedidos.setNombreProductoPedido(pedido.getNombreProductoPedido());
-            entidadPedidos.setTamanoProductoPedido(pedido.getTamanoProductoPedido());
-            entidadPedidos.setIdPedido(pedido.getIdPedido());
-            daoPedido.save(entidadPedidos);
-        }
+      EntidadPedidos entidadPedidos = new EntidadPedidos();
+
+      entidadPedidos.setHrFechaPedido(LocalDateTime.now());
+      entidadPedidos.setIdProductoPedido(pedidos.getIdProductoPedido());
+      entidadPedidos.setNombreProductoPedido(pedidos.getNombreProductoPedido());
+      entidadPedidos.setTamanoProductoPedido(pedidos.getTamanoProductoPedido());
+      entidadPedidos.setPrecioProductoPedido(pedidos.getPrecioProductoPedido());
+
+      entidadPedidos.setIdCliente(pedidos.getIdCliente());
+      entidadPedidos.setNombreCliente(pedidos.getNombreCliente());
+      entidadPedidos.setApellidoCliente(pedidos.getApellidoCliente());
+      entidadPedidos.setEmailCliente(pedidos.getEmailCliente());
+      entidadPedidos.setTelefonoCliente(pedidos.getTelefonoCliente());
+
+      entidadPedidos.setCalle(pedidos.getCalle());
+      entidadPedidos.setNumeroExterior(pedidos.getNumeroExterior());
+      entidadPedidos.setNumeroInterior(pedidos.getNumeroInterior());
+      entidadPedidos.setColonia(pedidos.getColonia());
+      entidadPedidos.setDelegacion(pedidos.getDelegacion());
+      entidadPedidos.setCodigoPostal(pedidos.getCodigoPostal());
+
+       iDaoPedidos.save(entidadPedidos);
+
+       return pedidos;
     }
+
+
 }

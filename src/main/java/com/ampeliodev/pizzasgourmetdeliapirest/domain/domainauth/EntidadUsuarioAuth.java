@@ -24,6 +24,6 @@ public class EntidadUsuarioAuth {
     private Long telefonoUsuario;
 
     @Enumerated(EnumType.STRING)
-    private RolName rolUsuario;
+    private RolName rolusuario;
 
 }
