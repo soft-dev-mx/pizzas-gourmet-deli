@@ -68,9 +68,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "https://soft-dev-mx.com",
-                "https://www.soft-dev-mx.com",
-                "https://www.soft-dev-mx.com/modulo-administrador/administrador-login"
-
+                "https://www.soft-dev-mx.com"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
