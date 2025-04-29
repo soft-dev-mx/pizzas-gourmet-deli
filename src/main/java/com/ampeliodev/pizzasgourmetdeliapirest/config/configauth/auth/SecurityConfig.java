@@ -72,7 +72,7 @@ public class SecurityConfig {
                 "https://www.soft-dev-mx.com"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "*"));
         configuration.setAllowCredentials(true); // Solo si usas cookies o Authorization header con tokens
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
