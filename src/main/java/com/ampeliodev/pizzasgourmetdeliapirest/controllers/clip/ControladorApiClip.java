@@ -4,14 +4,12 @@ import com.ampeliodev.pizzasgourmetdeliapirest.dto.clip.DtoPagoClip;
 import com.ampeliodev.pizzasgourmetdeliapirest.service.serviceclip.ServicioPagoClip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "https://www.soft-dev-mx.com")
 public class ControladorApiClip {
 
     @Autowired
