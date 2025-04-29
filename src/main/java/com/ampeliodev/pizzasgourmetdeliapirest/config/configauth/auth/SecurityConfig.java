@@ -49,7 +49,6 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/protected/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/protected/cliente/**").hasRole("CLIENTE")
@@ -69,10 +68,12 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "https://soft-dev-mx.com",
-                "https://www.soft-dev-mx.com"
+                "https://www.soft-dev-mx.com",
+                "https://www.soft-dev-mx.com/modulo-administrador/administrador-login"
+
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "*"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true); // Solo si usas cookies o Authorization header con tokens
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
