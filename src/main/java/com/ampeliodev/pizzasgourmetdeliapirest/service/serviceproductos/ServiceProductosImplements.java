@@ -151,6 +151,7 @@ public class ServiceProductosImplements implements IServiceProductos {
         }
 
         entidadProducto.setClaveProducto(claveProducto);
+
         double precioProductoMini = 0;
         entidadProducto.setPrecioProductoMini(precioProductoMini);
         double precioProductoIndividual = 0;
@@ -163,8 +164,7 @@ public class ServiceProductosImplements implements IServiceProductos {
         entidadProducto.setPrecioProductoGrande(precioProductoGrande);
         double precioProductoFamiliar = 0;
         entidadProducto.setPrecioProductoFamiliar(precioProductoFamiliar);
-        double precioProductoOtros = 0;
-        entidadProducto.setPrecioProductoOtros(precioProductoOtros);
+        entidadProducto.setPrecioProductoOtros(dtoProductos.getPrecioProductoOtros());
         entidadProducto.setDescripcionProducto(dtoProductos.getDescripcionProducto());
 
         String imagenProductoService = serviceProductosImg.guardarImagen(imagenProducto);
