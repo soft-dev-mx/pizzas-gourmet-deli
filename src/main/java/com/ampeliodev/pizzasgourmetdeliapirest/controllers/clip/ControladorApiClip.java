@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "https://www.soft-dev-mx.com")
+@CrossOrigin(origins = "https://pizzasgourmetdeli.com")
 public class ControladorApiClip {
 
     @Autowired

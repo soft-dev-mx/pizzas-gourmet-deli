@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "https://www.soft-dev-mx.com")
+@CrossOrigin(origins = "https://pizzasgourmetdeli.com")
 @Slf4j
 public class ControladorAuth {
 

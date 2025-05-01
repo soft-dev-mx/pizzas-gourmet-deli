@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "https://www.soft-dev-mx.com")
+@CrossOrigin(origins = "https://pizzasgourmetdeli.com")
 public class ControladorPedidos {
 
     @Autowired
